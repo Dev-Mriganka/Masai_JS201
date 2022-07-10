@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="page">
+        <div>
+            <a href="index.html"">
+            <img src="
+                https://mpng.subpng.com/20180531/ike/kisspng-reebok-sneakers-adidas-brand-company-fit-5b100b1f13f322.4937415415277780790817.jpg"
+                alt="">
+            </a>
+        </div>
+        <div id="form">
+            <h3 class="text-center">Sign Up</h3>
+            <form id="signup">
+                <div>
+                    <label for="fullname" class="block">Full name</label>
+                    <input type="text" placeholder="Enter your full name" id="name">
+                </div>
+                <div c>
+                    <label for="email" class="block">Email</label>
+                    <input type="text" placeholder="Enter email" id="email">
+                </div>
+                <div>
+                    <label for="password" class="block">Password</label>
+                    <input type="password" placeholder="Enter password" id="pass" >
+                </div>
+                <div class="text-center text-xs grey-text">
+                    By signing up, I accept the Masai School
+                    <span>
+                        <a rel="noreferrer" target="_blank" href="https://masaischool.com/terms">Terms ofService</a>
+                    </span>
+                    and acknowledge the
+                    <span>
+                        <a rel="noreferrer" target="_blank" href="https://masaischool.com/privacy">Privacy Policy</a>
+                    </span>
+                    .
+                </div>
+                <div>
+                    <button name="form" type="submit" value="signup" class="btn-disabled btn" id="btnSubmit">SIGN
+                        UP</button>
+                </div>
+            </form>
+            <div class="grey-text">Already have an account?
+                <a class="text-blue-600 font-medium ml-1" href="signin.html">Sign In</a>
+            </div>
+        </div>
+        <div></div>
+        <div id="bottom">
+            <div class="mr-1">© 2022 by Masai School</div><span> </span>
+            <div><a href="https://masaischool.com/privacy/" target="_blank" rel="noreferrer">Privacy Policy</a> &amp;<a
+                    href="https://masaischool.com/terms/" target="_blank" rel="noreferrer">Terms and Conditions</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="app.js"></script>
+<script>
+    document.getElementById('signup').addEventListener("submit", myFunc);
+    function myFunc(event) {
+    event.preventDefault();
+    let userEmail = document.querySelector("#email").value
+    let userName = document.querySelector("#name").value
+    let userPass = document.querySelector("#pass").value
+    userEmail = userEmail.trim()
+    userName = userName.trim()
+    userPass = userPass.trim()
+
+    
+    
+    if (userEmail == "" || userName == "" || userPass == "") {
+        alert("Fill All The Required Data!");
+        return;
+    }
+    
+    let u1 = new User(userName)
+    let success = u1.signup(userName, userEmail, userPass)
+    console.log('u1:', u1)
+
+    if (success) {        
+        let temp = userEmail.split("@")
+        if (temp[1] == "masai.com") {
+            let newObj = {
+                ...u1,
+                id : "admin"
+            };
+            admin_data_LS.push(newObj)
+            localStorage.setItem("admins", JSON.stringify(admin_data_LS))
+            console.log(admin_data_LS)
+        } else {
+            let s1 = new Student(0,0);
+            let newObj = {
+                ...u1,...s1,
+                id : "student"
+            };
+            students_data_LS.push(newObj)
+            localStorage.setItem("students", JSON.stringify(students_data_LS))
+            console.log(students_data_LS)
+        }
+        // window.location.href = "./signin.html";
+    }
+}
+</script>

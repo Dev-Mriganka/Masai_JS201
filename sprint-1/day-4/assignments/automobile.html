@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Auto Mobile</title>
+	</head>
+
+	<body></body>
+	<script>
+		// let rAndD = {
+		// 	model: "Nexon",
+		// 	category: "SUV",
+		// 	wheel: 4,
+		// 	capacity: "44L",
+		// 	dimension: "3993*1811*1606",
+		// 	seating: 5,
+		// };
+
+		// let NexonXM1 = Object.create(rAndD);
+		// NexonXM1.color = "Blue";
+		// NexonXM1.fuel = "Diesel"
+		
+		// let NexonXM2 = Object.create(rAndD);
+		// NexonXM2.color = "Red";
+		// NexonXM2.fuel = "Petrol"
+		
+		// console.log(NexonXM1)
+		// console.log(NexonXM2.wheel)
+		
+		function rAndD() {
+			this.model= "Nexon"
+			this.category= "SUV"
+			this.wheel= 4
+			this.capacity= "44L"
+			this.dimension= "3993*1811*1606"
+			this.seating= 5			
+		}
+
+		rAndD.prototype.specs = function (a,b){
+			this.color = a
+			this.fuel= b
+		}
+
+		let NexonXM = new rAndD()
+		NexonXM.specs('Blue', 'Diesel')
+		console.log(NexonXM)
+		
+	</script>
+</html>

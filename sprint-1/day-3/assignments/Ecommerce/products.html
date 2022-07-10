@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <title>Products Page</title>
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+      }
+
+      body {
+        font-family: "Open Sans", sans-serif;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      #mens {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        padding: 50px;
+      }
+
+      p {
+        font-weight: 600;
+        margin: 10px 0px;
+      }
+
+      button {
+        font-weight: 600;
+        margin: 10px 0px;
+        padding: 4px 7px;
+        color: black;
+      }
+      button:hover {
+            background-color: #1d2939;
+            color: azure !important;
+            cursor: pointer;
+        }
+      #sold:hover {
+        background-color: #f5f100;
+        color: rgb(0, 0, 0);
+        cursor: pointer;
+      }
+      button + button.red {
+        border: 2px solid red;
+      }
+      button + button.green {
+        border: 2px solid green;
+      }
+      h1 {
+        font-size: 30px;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      #counter {
+        text-align: center;
+      }
+      #counter+button {
+        margin: auto 50px;
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <h1>Products Page</h1>
+    <div id="counter"></div>
+    <button><a href="./index.html">Product Page</a></button>
+    <div id="mens"></div>
+  </body>
+</html>
+<script>
+  let productsData = JSON.parse(localStorage.getItem("products"));
+
+  let counter = document.querySelector("#counter");
+  counter.innerText = "Product Count - " + productsData.length;
+
+  productsData.forEach((el, index) => {
+    let div = document.createElement("div");
+    div.setAttribute("class", "product");
+
+    let img = document.createElement("img");
+    img.setAttribute("src", el.image);
+
+    let p1 = document.createElement("p");
+    p1.innerText = el.name;
+
+    let p2 = document.createElement("p");
+    p2.innerText = "₹" + el.price;
+
+    let p3 = document.createElement("p");
+
+    p3.innerText = el.category;
+
+    let p4 = document.createElement("p");
+    p4.innerText = el.gender;
+
+    let button = document.createElement("button");
+    button.innerText = "Delete";
+    button.setAttribute("id", "remove");
+    button.addEventListener("click", function () {
+      delProduct(index);
+    });
+
+    let button2 = document.createElement("button");
+    button2.innerText = el.sold;
+    button2.setAttribute("id", "sold");
+    if (el.sold == false) {
+      button2.style.borderColor = "green";
+    } else {
+      button2.style.borderColor = "red";
+    }
+    button2.addEventListener("click", function () {
+      toggle(el);
+    });
+
+    div.append(img, p1, p2, p3, p4, button, button2);
+    document.querySelector("#mens").appendChild(div);
+  });
+
+  function delProduct(index) {
+    productsData.splice(index, 1);
+    localStorage.setItem("products", JSON.stringify(productsData));
+    window.location.reload();
+  }
+
+  function toggle(el) {
+    if (el.sold == false) {
+      el.sold = true;
+    } else {
+      el.sold = false;
+    }
+    console.log(productsData);
+    localStorage.setItem("products", JSON.stringify(productsData));
+    window.location.reload();
+  }
+</script>

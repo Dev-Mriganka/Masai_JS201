@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./styles/signup.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+		<title>Signup</title>
+	</head>
+
+	<body>
+		<nav>
+			<h3><a href="./index.html">Home</a></h3>
+			<h3><a href="./login.html">Login</a></h3>
+			<h3><a href="./signup.html">Signup</a></h3>
+		</nav>
+		<div id="signup-form-div">
+			<div id="form">
+				<h3 class="text-center">SignUp</h3>
+				<form>
+					<!--Write form input elements here-->
+					<div class="relative">
+						<input type="text" placeholder="Enter Name" id="name" required />
+					</div>
+					<div class="relative">
+						<input
+							type="tel"
+							placeholder="Enter number"
+							id="number"
+							pattern="[0-9]{10}"
+							required
+						/>
+					</div>
+					<div class="relative">
+						<input type="text" placeholder="Enter email" id="email" required />
+					</div>
+					<div>
+						<input type="password" placeholder="Enter password" id="pass" required />
+					</div>
+					<div>
+						<button name="form" type="submit" value="signup" class="btn-disabled">
+							Sign Up
+						</button>
+					</div>
+				</form>
+				<div class="grey-text">
+					Already have an account?
+					<a class="text-blue-600 font-medium ml-1" href="./login.html">Log In</a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+<script src="./scripts/signup.js"></script>

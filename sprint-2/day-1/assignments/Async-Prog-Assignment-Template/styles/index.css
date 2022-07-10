@@ -1,0 +1,53 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    
+}
+#slideshow{
+    width: 1400px;
+    margin: auto;
+}
+#slideshow img{
+    width: 100%;
+}
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+nav {
+    background-color: #008181;;
+    position: sticky;
+    width: 1400px;
+    color: white;
+    margin: auto;
+    display: flex;
+    justify-content: flex-end;
+    /* border: 2px solid black; */
+    padding: 15px;
+}
+
+nav h3 {
+    font-size: 1.15rem;
+    margin: 0 30px;
+    margin-bottom: 0px;
+}
+
+#movies{
+    width: 1400px;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    margin: auto;
+    gap: 20px
+}
+ #movies img{
+    width: 70%;
+    height: 400px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+ }

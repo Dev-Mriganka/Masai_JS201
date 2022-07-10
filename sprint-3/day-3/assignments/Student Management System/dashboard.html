@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			body {
+				margin: 0px;
+				padding: 0px;
+				box-sizing: border-box;
+			}
+
+			table {
+				text-align: center;
+				width: 95%;
+			}
+
+			div {
+				width: 60%;
+				margin: auto;
+			}
+			table tr {
+				margin: auto;
+			}
+			thead {
+				background-color: rgb(221, 236, 6);
+			}
+			h2 {
+				text-align: center;
+			}
+			section {
+				margin: 20px 0;
+			}
+			form {
+				margin-bottom: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<table>
+				<thead>
+					<tr>
+						<td>Name</td>
+						<td>Email</td>
+						<td>Assignments</td>
+						<td>lectures</td>
+						<td>Remove</td>
+					</tr>
+				</thead>
+				<tbody id="students"></tbody>
+			</table>
+			<section>
+				<h2>Assignment Section</h2>
+				<form id="assignment">
+					<input type="text" id="ass_name" placeholder="Assignment name" />
+					<label for="">Due date & Time</label>
+					<input type="date" id="ass_date" placeholder="" />
+					<input type="time" id="ass_time" placeholder="" />
+					<button type="button" type="submit">Add</button>
+				</form>
+				<table>
+					<thead>
+						<tr>
+							<td>Name</td>
+							<td>Date</td>
+							<td>Time</td>
+							<td>Remove</td>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</section>
+			<section>
+				<h2>Lecture Section</h2>
+				<form id="lecture">
+					<input type="text" id="lec_name" placeholder="Lecture name" />
+					<label for="">Due date & Time</label>
+					<input type="date" id="lec_date" placeholder="" />
+					<input type="time" id="lec_time" placeholder="" />
+					<button type="button" type="submit">Add</button>
+				</form>
+				<table>
+					<thead>
+						<tr>
+							<td>Name</td>
+							<td>Date</td>
+							<td>Time</td>
+							<td>Remove</td>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</section>
+		</div>
+		
+	</body>
+</html>
+<script src="app.js"></script>
+<script>
+	if (loggedIn_LS.id == "admin") {
+		append();
+		assAppend();
+		lecAppend();
+		let a1 = new Admin(loggedIn_LS.name);
+		function append() {
+			document.querySelector("tbody").innerHTML = "";
+			students_data_LS.forEach((el, i) => {
+				let tr = document.createElement("tr");
+				let td1 = document.createElement("td");
+				td1.innerText = el.name;
+				let td2 = document.createElement("td");
+				td2.innerText = el.email;
+				let td3 = document.createElement("td");
+				td3.innerText = el.numOfAssignments;
+				let td4 = document.createElement("td");
+				td4.innerText = el.numOfLectures;
+				let td5 = document.createElement("td");
+				let button = document.createElement("button");
+				button.innerText = "remove";
+				button.addEventListener("click", function () {
+					let temp = a1.removeStudent(i);
+					alert(`${temp} has been removed`);
+					append();
+				});
+				td5.appendChild(button);
+				tr.append(td1, td2, td3, td4, td5);
+				document.querySelector("#students").appendChild(tr);
+			});
+		}
+		document
+			.querySelector("#assignment>button")
+			.addEventListener("click", assign);
+		function assign(event) {
+			// event.preventDefault();
+			let name = document.querySelector("#ass_name").value;
+			let date = document.querySelector("#ass_date").value;
+			let time = document.querySelector("#ass_time").value;
+
+			a1.addAssignment(name, date, time);
+			assAppend();
+		}
+
+		function assAppend() {
+			document.querySelector("#assignment~table>tbody").innerHTML = "";
+			assignments.forEach((el, i) => {
+				let tr = document.createElement("tr");
+				let td1 = document.createElement("td");
+				td1.innerText = el.name;
+				let td2 = document.createElement("td");
+				td2.innerText = el.date;
+				let td3 = document.createElement("td");
+				td3.innerText = el.time;
+				let td5 = document.createElement("td");
+				let button = document.createElement("button");
+				button.innerText = "remove";
+				button.addEventListener("click", function () {
+					let temp = a1.removeAssignment(i);
+					alert(`${temp} has been removed`);
+					assAppend();
+				});
+				td5.appendChild(button);
+				tr.append(td1, td2, td3, td5);
+				document.querySelector("#assignment+table>tbody").appendChild(tr);
+			});
+		}
+		document.querySelector("#lecture>button").addEventListener("click", lecture);
+		function lecture(event) {
+			// event.preventDefault();
+			let name = document.querySelector("#lec_name").value;
+			let date = document.querySelector("#lec_date").value;
+			let time = document.querySelector("#lec_time").value;
+
+			a1.addLecture(name, date, time);
+			lecAppend();
+		}
+
+		function lecAppend() {
+			document.querySelector("#lecture~table>tbody").innerHTML = "";
+			lectures.forEach((el, i) => {
+				let tr = document.createElement("tr");
+				let td1 = document.createElement("td");
+				td1.innerText = el.name;
+				let td2 = document.createElement("td");
+				td2.innerText = el.date;
+				let td3 = document.createElement("td");
+				td3.innerText = el.time;
+				let td5 = document.createElement("td");
+				let button = document.createElement("button");
+				button.innerText = "remove";
+				button.addEventListener("click", function () {
+					let temp = a1.removeLecture(i);
+					alert(`${temp} has been removed`);
+					lecAppend();
+				});
+				td5.appendChild(button);
+				tr.append(td1, td2, td3, td5);
+				document.querySelector("#lecture+table>tbody").appendChild(tr);
+			});
+		}
+	} else {
+		document.querySelector("table").innerHTML = "";
+		document.querySelector("#assignment").innerHTML = "";
+		document.querySelector("#lecture").innerHTML = "";
+		function assAppend2() {
+			// document.querySelector("#assignment~table>tbody").innerHTML=""
+			assignments.forEach((el, i) => {
+				console.log("hi");
+				let tr = document.createElement("tr");
+				let td1 = document.createElement("td");
+				td1.innerText = el.name;
+				let td2 = document.createElement("td");
+				td2.innerText = el.date;
+				let td3 = document.createElement("td");
+				td3.innerText = el.time;
+				let td5 = document.createElement("td");
+				let button = document.createElement("button");
+				button.innerText = "Submit";
+				button.addEventListener("click", function () {
+					let a1;
+					students_data_LS.forEach((el) => {
+						if (el.email == loggedIn_LS.email) {
+							a1 = new Student(el.numOfAssignments, el.numOfLectures);
+							console.log(a1);
+						}
+					});
+					let temp = a1.assignmentSubmitted();
+					console.log(a1);
+					const newState = students_data_LS.map((obj) =>
+						obj.email === loggedIn_LS.email ? { ...obj, ...a1 } : obj
+					);
+					console.log(newState);
+					localStorage.setItem("students", JSON.stringify(newState));
+					alert(`Assignment Submitted`);
+				});
+				td5.appendChild(button);
+				tr.append(td1, td2, td3, td5);
+				document.querySelector("#assignment+table>tbody").appendChild(tr);
+			});
+		}
+		function lecAppend2() {
+			// document.querySelector("#assignment~table>tbody").innerHTML=""
+			lectures.forEach((el, i) => {
+				console.log("hi");
+				let tr = document.createElement("tr");
+				let td1 = document.createElement("td");
+				td1.innerText = el.name;
+				let td2 = document.createElement("td");
+				td2.innerText = el.date;
+				let td3 = document.createElement("td");
+				td3.innerText = el.time;
+				let td5 = document.createElement("td");
+				let button = document.createElement("button");
+				button.innerText = "Submit";
+				button.addEventListener("click", function () {});
+				td5.appendChild(button);
+				tr.append(td1, td2, td3, td5);
+				document.querySelector("#lecture+table>tbody").appendChild(tr);
+			});
+		}
+		lecAppend2();
+		assAppend2();
+	}
+</script>

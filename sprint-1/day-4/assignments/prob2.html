@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problem 3</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // -------- My Map Function --------
+	Array.prototype.myMap = function (func) {
+		let res = [];
+		for (let i = 0; i < this.length; i++) {
+			let el = this[i];
+			let x = func(el);
+			res.push(x);
+		}
+		return res;
+	};
+
+	// -------- My ForEach Function --------
+	Array.prototype.myForEach = function (func) {
+		for (let i = 0; i < this.length; i++) {
+			let el = this[i];
+			let x = func(el);
+		}
+	};
+
+	// -------- My Filter Function --------
+	Array.prototype.myFilter = function (func) {
+		let res = [];
+		for (let i = 0; i < this.length; i++) {
+			let el = this[i];
+			let x = func(el);
+			if (x) res.push(el);
+		}
+		return res;
+	};
+
+	// -------- My Reduce Function --------
+	Array.prototype.myReduce = function (func, ini) {
+		if (!this.length && ini === undefined) {
+			throw new TypeError("Reduce of empty array with no initial values");
+		}
+
+		let acc = ini;
+		let i = 0;
+		if (ini === undefined) {
+			acc = this[0];
+            i = 1;
+		}
+		for (; i < this.length; i++) {
+			acc = func(acc, this[i], i, this);
+		}
+		return acc;
+	};
+
+</script>

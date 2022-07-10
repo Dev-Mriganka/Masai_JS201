@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin panel</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        button {
+            font-weight: 600;
+            margin: 10px 0px;
+            padding: 4px 7px;
+            color: black !important;
+        }
+        button:hover {
+            background-color: #1d2939;
+            color: azure !important;
+            cursor: pointer;
+        }
+        a{
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <input type="text" id="name" placeholder="Product Name">
+        <input type="text" id="category" placeholder="Category">
+        <input id="image" type="text" placeholder="Enter Image URL" />
+        <input type="number" id="price" placeholder="Price">
+        <select id="gender">
+            <option value="">Gender</option>
+            <option value="male">M</option>
+            <option value="female">F</option>
+        </select>
+        <select id="sold">
+            <option value="false">False</option>
+            <option value="true">True</option>
+        </select>
+        <input type="submit" value="submit">
+    </form>
+    <button><a href="./products.html">Product Page</a></button>
+
+</body>
+    <script type="text/javascript">
+        document.querySelector("form").addEventListener("submit", myFunc)
+
+        let productsArr=JSON.parse(localStorage.getItem("products"))||[]
+        function myFunc(event) {
+            event.preventDefault();
+
+            let name = document.querySelector("#name").value
+            let category = document.querySelector("#category").value            
+            let image = document.querySelector("#image").value
+            let price = document.querySelector("#price").value
+            let gender = document.querySelector("#gender").value
+            let sold = document.querySelector("#sold").value
+
+            let product = new ecom(name, category, image, price, gender, sold)
+            productsArr.push(product)
+            console.log(productsArr)
+            localStorage.setItem("products", JSON.stringify(productsArr))
+        }
+
+        function ecom(n,c,i,p,g,s) {
+            this.name = n;
+            this.category = c;
+            this.image = i;
+            this.price = p;
+            this.gender = g;
+            this.sold = s;
+        }
+    </script>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constructor Functions</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let amar = {
+        name : 'amar',
+        skill : "singer",
+        borrow : function(){
+            console.log(`${this.name}, now you are a ${amar.skill}`)
+        }
+    }
+    let akbar = {
+        name : 'akbar',
+        skill : "chef",
+        borrow : function(){
+            console.log(`${this.name}, now you are a ${akbar.skill}`)
+        }
+    }
+    let anthony = {
+        name : 'anthony',
+        skill : "magician",
+        borrow : function(){
+            console.log(`${this.name}, now you are a ${anthony.skill}`)
+        }
+    }
+    amar.borrow()
+    akbar.borrow.call(amar)
+    amar.borrow.call(anthony)
+    anthony.borrow.call(akbar)
+    
+</script>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			input {
+				width: 500px;
+				height: 50px;
+			}
+			#movies {
+				width: 505px;
+				height: 500px;
+				border: 1px solid red;
+				overflow: scroll;
+			}
+			.movies {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				padding: 10px;
+			}
+			.movies img {
+				width: 100px;
+				height: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Closures</h1>
+		<input oninput="debounce(main,1000)" type="text" name="" id="query" placeholder="Search" />
+		<div id="movies"></div>
+	</body>
+</html>
+<script>
+	async function main() {
+		let query = document.querySelector("#query").value;
+		let data = await getData(query);
+		append(data.Search);
+	}
+
+	async function getData(query) {
+		let url = `https://www.omdbapi.com/?apikey=1b4a829f&s=${query}`;
+		let res = await fetch(url);
+		let data = await res.json();
+		return data;
+	}
+
+	function append(data) {
+		if (!data) {
+			console.log(data);
+			return;
+		}
+		let container = document.querySelector("#movies");
+		container.innerHTML = "";
+		data.forEach((el) => {
+			let img = document.createElement("img");
+			img.src = el.Poster;
+			let h3 = document.createElement("h3");
+			h3.innerText = el.Title;
+
+			let div = document.createElement("div");
+			div.classList.add("movies");
+			div.append(img, h3);
+
+			container.appendChild(div);
+		});
+	}
+    let repeat;
+	function debounce(func, delay) {
+        if(repeat){
+            clearTimeout(repeat);
+        }
+		repeat = setTimeout(function () {
+            func();
+        },delay);
+	}
+</script>

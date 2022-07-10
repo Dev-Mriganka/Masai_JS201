@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+        <h1>Counter :-</h1>
+        <h2 id="count">Counter</h2>
+        <input type="text" id="text" placeholder="Start Typing...">
+    </body>
+</html>
+<script>
+	let name = "HEMACHANDRAN"; //- 5 sec
+	function counter() {
+		let count = 0;
+		let text = document.getElementById("text");
+		let id = setInterval(function () {
+			if (text.value === name) {
+				alert("Jit gya bhai!");
+				clearInterval(id);
+			}
+			if (count === 6) {
+				text.disabled = true;
+				alert("Haar gya bhai!");
+				clearInterval(id);
+			}
+			let h2 = document.getElementById("count");
+			h2.innerText = count;
+			count++;
+		}, 1000);
+	}
+	counter();
+</script>

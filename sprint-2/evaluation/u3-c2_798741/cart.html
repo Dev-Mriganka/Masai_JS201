@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+      #cart_total{
+        padding-left: 50px;
+        height: 50px;
+        margin-top: 20px;
+      }
+			#cart {
+				width: 95%;
+				margin: auto;
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 30px 60px;
+			}
+			#cart img {
+				width: 80%;
+				height: 300px;
+			}
+			#cart > div {
+				display: flex;
+				flex-direction: column;
+				gap: 15px;
+				align-items: center;
+			}
+
+			.remove {
+				padding: 5px;
+			}
+      #checkout{
+        padding: 5px;
+        margin-left: 30px;
+      }
+		</style>
+	</head>
+	<body>
+		<div>
+			<!--Show cart total with id:- "cart_total" here, do not add anything only Total value. Not even "Total - 1200Rs" but like this "1200" -->
+			<h2 id="cart_total"></h2>
+		</div>
+		<div>
+			<!--Show items added to cart here-->
+			<div id="cart"></div>
+			<!-- add an remove button to each item so that you can remove that dish from cart, give the button HTML class as 'remove' -->
+		</div>
+
+		<!-- Provide a checkout button with id as "checkout" to go to checkout.html page -->
+    <button id="checkout"><a href="./checkout.html">Check Out</a></button>
+	</body>
+</html>
+<script src="./scripts/cart.js"></script>

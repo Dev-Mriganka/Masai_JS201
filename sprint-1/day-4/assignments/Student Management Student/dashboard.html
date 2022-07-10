@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Dashboard</title>
+	</head>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		body {
+			background-color: rgb(248, 246, 246);
+		}
+
+		table,
+		td,
+		th {
+			border: 1px solid #ddd;
+			text-align: left;
+		}
+
+		table {
+			border-collapse: collapse;
+			width: 70%;
+			margin: auto;
+			margin-top: 50px;
+		}
+
+		th,
+		td {
+			padding: 15px;
+			text-align: center;
+		}
+
+		tr > th {
+			background-color: #1d2939;
+			color: white;
+		}
+
+		.flex_img {
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+		}
+		tbody > tr > td > img {
+			width: 22%;
+		}
+		tr > td:last-child {
+			color: red;
+			cursor: pointer;
+		}
+		tr > td > div {
+			display: flex;
+			justify-content: space-around;
+		}
+        #navbar{
+            padding: 10px 20px ;
+            display: flex;
+            background-color: #1d2939;
+            color: white;
+        }
+        #navbar p {
+            width: 10%;
+        }
+	</style>
+	<body>
+		<div id="navbar">
+		</div>
+		<div>
+			<table>
+				<!-- Dont change order of columns -->
+				<thead>
+					<tr>
+						<th>Image</th>
+						<th>Name</th>
+						<th>Unit</th>
+						<th>Courses</th>
+						<th>Batch</th>
+						<th>Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- Append your output here -->
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>
+<script src="./dashboard.js"></script>
