@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout</title>
+  </head>
+  <style>
+    * {
+				margin: 0px;
+				padding: 0px;
+				box-sizing: border-box;
+			}
+      h1{
+        text-align: center;
+      }
+      #hotel_details h3, #hotel_details h2{
+        width: 800px;
+        text-align: center;
+        margin: auto;
+      }
+      #hotel_details div{
+        width: 800px;
+        margin: auto;
+        display: flex;
+        gap: 30px;
+
+      }
+      img{
+        width: 47%;
+        height: 400px
+      }
+  </style>
+  <body>
+    <h1>Final Checkout</h1>
+    <div>
+      <!-- Append the hotel detail inside div with id: "hotel_details" -->
+      <div id="hotel_details"></div>
+    </div>
+    <div id="checkout">
+      <!-- - The hotel details will be appended inside div with id:- "hotel_details".
+  - The input fields will have ids:- "user_name", "user_number", "check_in" and "check_out"
+  - The book button will have id:- "book"   -->
+        <form action="">
+          <input type="text" id="user_name" >
+          <input type="number" id="user_number" >
+          <input type="date" id="check_in">
+          <input type="date" id="check_out">
+          <button id="book" type="submit">Book</button>
+        </form>
+    </div>
+  </body>
+</html>
+<script src="./scripts/checkout.js"></script>
